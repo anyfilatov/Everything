@@ -1,0 +1,30 @@
+int main(int argc, char** argv){
+  int a = 100;
+  int b = argv[0];
+  bool flag = getFlag();
+  while(a > b) {
+    if (flag) {
+      b += 2;
+      for (int i = 0; i < calcCPU(a,b); i++) {
+        int grep = initGrep(i);
+        b += grep%2;
+      }
+      std::cout << a;
+    }
+    else {
+      a -= 3;
+      int buf = a > 20 ? 12 : -12;
+      std::cout << b;
+    }
+
+    if (a%3 == 0) {
+      std::cout << a;
+    }
+    else {
+      a -= 3;
+      std::cout << b;
+    }
+  }
+  std::cout << "a = ", a, " b = ", b;
+  return 0;
+}
