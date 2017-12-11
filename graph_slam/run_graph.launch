@@ -1,0 +1,21 @@
+<launch>
+  <machine name="local" address="localhost" default="true" />
+
+  <param name="use_sim_time" value="true"/>
+  <arg name="path" default="/home/anton/2011-01-25-06-29-26.bag" />
+  <arg name="rate" default="3.0" />
+
+  <node name="merger" pkg="graph_slam" type="merger.py"
+        cwd="node" output="screen" />
+        
+  <node name="graph_slam_" pkg="graph_slam" type="graph_slam_.py"
+        cwd="node" output="screen" />
+
+
+  <node name="player" pkg="rosbag" type="play" required="true"
+        args="--delay=3 --clock --rate $(arg rate) $(arg path)" />
+
+  <node name="rviz" pkg="rviz" type="rviz" respawn="true"
+        args="-d $(find graph_slam)/config.rviz" />
+
+</launch>
