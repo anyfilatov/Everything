@@ -22,13 +22,14 @@ graph=[]
 
 class GridMap:
     def __init__(self):
-        grid=[0]*1000000
-        map_center_x = 500
-        map_center_y = 500
-        map_resolution = 0.1
-    def point_to_grid(x,y):
-        # x и y - положительные или отрицательные значения, полученные с лазерного дальномера и переведённые в декартовые координаты
-        return round(x/map_resolution) + map_center_x, (round(y/map_resolution) + map_center_y)*1000
+        self.grid=[-1]*1000000
+        self.map_center_x = 500
+        self.map_center_y = 500
+        self.map_resolution = 0.1
+
+    def point_to_grid(self, x, y):
+        # x and y - are positive or negative cartesian coordinates 
+        return (round(x/self.map_resolution) + self.map_center_x), (round(y/self.map_resolution) + self.map_center_y)*1000
     
     def scan_to_map(self, robot_pose, scan):
         c, s = math.cos(robot_pose.theta), math.sin(robot_pose.theta)
@@ -36,19 +37,28 @@ class GridMap:
         for dist in scan.ranges:
             obst_x = dist*math.cos(cur_angle)
             obst_y = dist*math.sin(cur_angle)
+
+            robot_scan_x = c * obst_x - s * obst_y
+            robot_scan_y = s * obst_x + c * obst_y
+
             cur_angle += scan.angle_increment
-            grid_x, grid_y = self.point_to_grid(obst_x, obst_y)
-            grid[grid_x, grid_y] = 100
+            grid_x, grid_y = self.point_to_grid(robot_pose.x + robot_scan_x, robot_pose.y + robot_scan_y)
+            self.grid[int(round(grid_x + grid_y))] = 100
+            
     
     def convert_to_occ_grid(self):
         res = OccupancyGrid()
-        res.resolution = 0.1
-        res.width = 1000
-        res.height = 1000
-        res.data = grid
+        res.header.stamp = rospy.Time.now()
+        res.header.frame_id = "odom_combined"
+        res.info.resolution = 0.1
+        res.info.width = 1000
+        res.info.height = 1000
+        res.info.origin.position.x = -50
+        res.info.origin.position.y = -50
+        res.data = self.grid
         return res
 
-def create_map(laser_scan)
+#def create_map(laser_scan)
 
 def save_scan(data):
      if len(graph) == 0:
@@ -64,12 +74,16 @@ if __name__ == '__main__':
     pub = rospy.Publisher("/mmm", LaserScan, queue_size=1)
     map_pub = rospy.Publisher("/map", OccupancyGrid, queue_size = 1)
     br = tf.TransformBroadcaster()
+    graph_map = GridMap()
     while not rospy.is_shutdown():
         if len(graph) == 0:
             continue
         lastNode = graph[-1]
         pub.publish(lastNode.scan)
-        
+        graph_map.scan_to_map(lastNode.pose, lastNode.scan)
+        cur_map = OccupancyGrid();
+        cur_map = graph_map.convert_to_occ_grid()
+        map_pub.publish(cur_map)
         br.sendTransform((lastNode.pose.x,lastNode.pose.y, 0), 
                           tf.transformations.quaternion_from_euler(0, 0, -lastNode.pose.theta),
                           rospy.Time.now(),
