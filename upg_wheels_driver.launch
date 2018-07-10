@@ -1,0 +1,14 @@
+<launch>
+  <machine name="thing" address="thing.local" user="ubuntu"
+           env-loader = "~/Duckietown-Software/environment.sh"/>
+
+  <node machine="thing" pkg="dagu_car" 
+        type="wheels_driver_node.py" name="wheels_driver_node"/>
+
+  <node machine="thing" pkg="dagu_car"
+        type="inverse_kinematics_node.py" name="inverse_kinematics_node">
+    <remap from = "inverse_kinematics_node/wheels_cmd"
+           to   = "wheels_driver_node/wheels_cmd" />
+  </node>
+</launch>
+
