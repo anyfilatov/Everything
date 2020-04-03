@@ -13,8 +13,11 @@ void merge(Iterator beg, Iterator mid, Iterator end)
 	int n1 = mid - beg + 1;
 	int n2 = end - mid;
 
-	std::vector<typename std::iterator_traits<Iterator>::value_type> left(n1); 
-	std::vector<typename std::iterator_traits<Iterator>::value_type> right(n2); 
+	auto tmp = *beg;
+	std::vector<decltype(tmp)> left;
+	std::vector<decltype(tmp)> right;
+	left.reserve(n1);
+	right.reserve(n2);
 
 	std::move(beg, mid + 1, left.begin());
 	std::move(mid + 1, end + 1, right.begin());
@@ -28,34 +31,36 @@ template <typename Iterator>
 void merge_sort(Iterator begin, Iterator end) 
 { 
 	Iterator mid = begin + (end - begin) / 2; 
-
+ 
 	if (begin < end) { 
 		merge_sort(begin, mid); 
 		merge_sort(mid + 1, end); 
-		merge(begin, mid, end); 
+		merge(begin, mid, end);
 	} 
 } 
 
 // entry point for multi-threading. Result will be placed into it
 template <typename Iterator>
-void parallel_sort(Iterator it, size_t n_elems, size_t n_threads) {
+void parallel_sort(Iterator beg, Iterator end, size_t n_threads) {
 
+	size_t n_elems = end - beg;
 	std::thread threads[n_threads]; 
+
+	//if the container cannot be completely divided to partitions - we should round up
 	size_t part_len = (n_elems - 1) / n_threads + 1;
 
 	// creating threads 
 	for (size_t i = 0; i < n_threads; i++) 
 		threads[i] = std::thread(merge_sort<Iterator>,
-					   it+ i * part_len,
-					   it + std::min((i + 1) * part_len - 1, n_elems - 1)
+					   beg + i * part_len,
+					   beg + std::min((i + 1) * part_len - 1, n_elems - 1)
 					 );
-
-	for (auto&& thread : threads) 
+	for (auto& thread : threads) 
 		thread.join();
 
 	//merging final parts
 	for (size_t i = 1; i < n_threads; i++) {
-		merge(it, it + i * part_len - 1, it + std::min((i + 1) * part_len - 1, n_elems - 1));
+		merge(beg, beg + i * part_len - 1, beg + std::min((i + 1) * part_len - 1, n_elems - 1));
 	}
 }
 
@@ -68,6 +73,10 @@ int main()
 	
 	std::vector<int> a(amount);
 
+	for (int i = 0; i < amount; i++) {
+		a[i] = rand() % 100; 
+	}
+
 	// generating random values in array 
 	std::cout << "Input array:  "; 
 	for (int i = 0; i < amount; i++) {
@@ -76,7 +85,7 @@ int main()
 	}
 	std::cout << std::endl;
 
-	parallel_sort(a.begin(), amount, th_amount);
+	parallel_sort(a.begin(), a.end(), th_amount);
 
 	// displaying sorted array 
 	std::cout << "Sorted array: "; 
