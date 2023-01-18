@@ -1,0 +1,27 @@
+token,annotations_text,annotations_time,annotations_duration
+epiiiyv9yyfsptb1tg,['Spike'],[7.809999942779541],[0.0]
+vsofa7jrrjnxjr01ln,"['Photic Stimulation', '11 Hz', '13 Hz']","[1.0, 2.2809998989105225, 17.2810001373291]","[0.0, 0.0, 0.0]"
+mwrrtt09r5t8emx411,"['Sharp Wave', 'Sharp Wave']","[5.210000038146973, 10.149999618530273]","[0.0, 0.0]"
+i8e86rguooj8kzdfoi,[],[],[]
+m377vq2p0e6gdd05eb,['Seizure Onset'],[4.150000095367432],[0.0]
+6465ar6ay1hlrsdnpd,"['Spike Right Frontal', 'Spike Right Occipital']","[1.6799999475479126, 9.119999885559082]","[0.0, 0.0]"
+5mjht3gajr7vyhkuwz,"['Clinical Onset', 'Patient Pushed Button', 'Seizure End']","[38.599998474121094, 46.11800003051758, 49.5]","[0.0, 0.0, 0.0]"
+kbpa66ly3oqmnn86bc,[],[],[]
+hofrmg7hgri9dj5055,"['Sharp Wave', 'Sharp Wave', 'Sharp Wave', 'Sharp Wave']","[1.7400000095367432, 2.4000000953674316, 12.729999542236328, 14.399999618530273]","[0.0, 0.0, 0.0, 0.0]"
+8tmodn2a17d8os4mm0,"['Sharp Wave C3', 'Sharp Wave F7']","[3.509999990463257, 28.049999237060547]","[0.0, 0.0]"
+iklnm01hh24djok3co,"['BEFEDC', 'BEFEDC', 'BEFEDC']","[3.9000000953674316, 6.079999923706055, 9.390000343322754]","[0.0, 0.0, 0.0]"
+4cqdg86ir7ezy0zl62,"['Seizure Onset', 'Seizure End']","[20.299999237060547, 28.850000381469727]","[0.0, 0.0]"
+gg9x2mh4i937wsa0w1,['C3 > P3'],[7.360000133514404],[0.0]
+6z3dqektflvxoj0mbm,"['Slow Spike and Wave', 'BFEDCh', 'Sharp Wave', 'Sharp Wave', 'BFEDCh']","[3.2799999713897705, 6.889999866485596, 11.289999961853027, 13.739999771118164, 13.819999694824219]","[0.0, 0.0, 0.0, 0.0, 0.0]"
+uezcfnx2s3enr0nta5,"['Photic Stimulation 9 Hz', 'Polyspikes']","[7.234000205993652, 12.039999961853027]","[0.0, 0.0]"
+r29fcxsgq4ay53d1yf,['Spike O2'],[1.600000023841858],[0.0]
+h9nqq1534n2h1rnxyi,['Physical Stimulation'],[11.600000381469727],[0.0]
+ngvqjk99dkmmji8jr1,"['BFEDCh', 'Polyspikes', 'Slow spike and wave']","[0.8199999928474426, 1.0199999809265137, 4.320000171661377]","[0.0, 0.0, 0.0]"
+i0hral6op60r2ryqn5,"['Sharp Wave', 'Sharp Wave', 'Sharp Wave', 'Sharp Wave']","[1.149999976158142, 2.809999942779541, 4.639999866485596, 6.400000095367432]","[0.0, 0.0, 0.0, 0.0]"
+zk8i6sap24cecocji1,"['BFEDCh', 'BFEDCh', 'BFEDCh', 'Seizure Onset', 'Seizure End', 'BFEDCh', 'BFEDCh', 'BFEDCh', 'BFEDCh', 'BFEDCh', 'BFEDCh', 'BFEDCh']","[2.4800000190734863, 4.139999866485596, 5.889999866485596, 6.300000190734863, 20.200000762939453, 20.43000030517578, 21.459999084472656, 24.65999984741211, 26.639999389648438, 27.31999969482422, 28.579999923706055, 29.760000228881836]","[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]"
+fft8q9w5hxpjavqbyy,[],[],[]
+1rqzsfbebax1a6mya4,['Periodic Pattern'],[1.4700000286102295],[0.0]
+gj7lmji8m8moikm14f,[],[],[]
+dkg4ufzillhz8x882z,"['Spike O1', 'Eyes movement', 'Vertex']","[0.800000011920929, 2.2100000381469727, 13.300000190734863]","[0.0, 0.0, 0.0]"
+82vtv9psr42qovowbh,['Spike and Slow'],[5.099999904632568],[0.0]
+ozeqzupzjx5p9j1mcf,"['Sharp Waves', 'Sharp Waves', 'Sharp Waves', 'Sharp Waves', 'EEG Seizure Onset', 'Seizure End']","[4.860000133514404, 5.650000095367432, 8.520000457763672, 13.699999809265137, 32.19599914550781, 41.099998474121094]","[0.0, 0.0, 0.0, 0.0, 0.0, 0.0]"
